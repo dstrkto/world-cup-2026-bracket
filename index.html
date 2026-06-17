@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 World Cup — Radial Knockout Bracket</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f5f5f3; --line:#d9d7d1; --line2:#bfbcb4;
+    --text:#1f1e1b; --muted:#6b6862; --accent:#c8842b; --accentbg:#fcefdb; --win:#1a7f4b;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#1a1a18; --surface:#26261f; --line:#3a392f; --line2:#52503f;
+      --text:#f0efe9; --muted:#a3a096; --accent:#e0a44e; --accentbg:#3a2e17; --win:#52c98a; }
+  }
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:820px;margin:0 auto;padding:16px;}
+  header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px;}
+  h1{font-size:18px;font-weight:600;margin:0;}
+  .meta{font-size:12px;color:var(--muted);}
+  .legend{font-size:12px;color:var(--muted);margin:2px 0 6px;}
+  svg{width:100%;height:auto;display:block;}
+  .lk{stroke:var(--line);stroke-width:1.2;fill:none;}
+  .ring{fill:none;stroke:var(--line);stroke-width:1;stroke-dasharray:2 5;opacity:.7;}
+  .nd{fill:var(--surface);stroke:var(--line2);stroke-width:1;}
+  .fin{fill:var(--accentbg);stroke:var(--accent);stroke-width:1.6;}
+  .num{fill:var(--muted);font-size:9px;}
+  .tm{fill:var(--text);font-size:11px;}
+  .tmw{fill:var(--win);font-size:11px;font-weight:600;}
+  .sl{fill:var(--muted);font-size:10px;}
+  .sc{fill:var(--text);font-size:10px;}
+  .ti{fill:var(--text);font-size:13px;font-weight:600;}
+  .ts{fill:var(--muted);font-size:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>2026 FIFA World Cup — road to the final</h1>
+    <span class="meta" id="updated"></span>
+  </header>
+  <div class="legend">Outer ring → centre: Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final. Winners shown in green.</div>
+  <svg id="bracket" viewBox="0 0 760 770" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
+</div>
+<script>
+const CX=380, CY=380, R={r32:300,r16:212,qf:138,sf:76};
+const ORDER=[73,75,74,77,83,84,81,82,76,78,79,80,86,88,85,87];
+const META={
+ 73:{rd:'R32',d:'Jun 28',v:'Los Angeles',sl:['RU A','RU B']},
+ 74:{rd:'R32',d:'Jun 29',v:'Boston',sl:['W E','3rd']},
+ 75:{rd:'R32',d:'Jun 29',v:'Guadalajara',sl:['W F','RU C']},
+ 76:{rd:'R32',d:'Jun 29',v:'Houston',sl:['W C','RU F']},
+ 77:{rd:'R32',d:'Jun 30',v:'New York NJ',sl:['W I','3rd']},
+ 78:{rd:'R32',d:'Jun 30',v:'Dallas',sl:['RU E','RU I']},
+ 79:{rd:'R32',d:'Jun 30',v:'Mexico City',sl:['W A','3rd']},
+ 80:{rd:'R32',d:'Jul 1',v:'Atlanta',sl:['W L','3rd']},
+ 81:{rd:'R32',d:'Jul 1',v:'San Francisco',sl:['W D','3rd']},
+ 82:{rd:'R32',d:'Jul 1',v:'Seattle',sl:['W G','3rd']},
+ 83:{rd:'R32',d:'Jul 2',v:'Toronto',sl:['RU K','RU L']},
+ 84:{rd:'R32',d:'Jul 2',v:'Los Angeles',sl:['W H','RU J']},
+ 85:{rd:'R32',d:'Jul 2',v:'Vancouver',sl:['W B','3rd']},
+ 86:{rd:'R32',d:'Jul 3',v:'Miami',sl:['W J','RU H']},
+ 87:{rd:'R32',d:'Jul 3',v:'Kansas City',sl:['W K','3rd']},
+ 88:{rd:'R32',d:'Jul 3',v:'Dallas',sl:['RU D','RU G']},
+ 89:{rd:'R16',d:'Jul 4',v:'Philadelphia',f:[74,77]},
+ 90:{rd:'R16',d:'Jul 4',v:'Houston',f:[73,75]},
+ 91:{rd:'R16',d:'Jul 5',v:'New York NJ',f:[76,78]},
+ 92:{rd:'R16',d:'Jul 5',v:'Mexico City',f:[79,80]},
+ 93:{rd:'R16',d:'Jul 6',v:'Dallas',f:[83,84]},
+ 94:{rd:'R16',d:'Jul 6',v:'Seattle',f:[81,82]},
+ 95:{rd:'R16',d:'Jul 7',v:'Atlanta',f:[86,88]},
+ 96:{rd:'R16',d:'Jul 7',v:'Vancouver',f:[85,87]},
+ 97:{rd:'QF',d:'Jul 9',v:'Boston',f:[89,90]},
+ 98:{rd:'QF',d:'Jul 10',v:'Los Angeles',f:[93,94]},
+ 99:{rd:'QF',d:'Jul 11',v:'Miami',f:[91,92]},
+ 100:{rd:'QF',d:'Jul 11',v:'Kansas City',f:[95,96]},
+ 101:{rd:'SF',d:'Jul 14',v:'Dallas',f:[97,98]},
+ 102:{rd:'SF',d:'Jul 15',v:'Atlanta',f:[99,100]},
+ 104:{rd:'Final',d:'Jul 19',v:'New York NJ',f:[101,102]}
+};
+const R16P=[[73,75,90],[74,77,89],[83,84,93],[81,82,94],[76,78,91],[79,80,92],[86,88,95],[85,87,96]];
+const QFP=[[90,89,97],[93,94,98],[91,92,99],[95,96,100]];
+const SFP=[[97,98,101],[99,100,102]];
+const FLAG={"Mexico":"🇲🇽","South Africa":"🇿🇦","South Korea":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Bosnia and Herzegovina":"🇧🇦","Qatar":"🇶🇦","Switzerland":"🇨🇭","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","USA":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Ivory Coast":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cape Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
+const ang=i=>(-90+i*22.5)*Math.PI/180;
+const pt=(r,a)=>[CX+r*Math.cos(a), CY+r*Math.sin(a)];
+const pos={}, an={};
+ORDER.forEach((m,i)=>{an[m]=ang(i); pos[m]=pt(R.r32,an[m]);});
+R16P.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.r16,an[m]);});
+QFP.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.qf,an[m]);});
+SFP.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.sf,an[m]);});
+pos[104]=[CX,CY];
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+function txt(p,cls,s,opt={}){const t=el("text",{x:p[0],y:p[1],class:cls,"text-anchor":opt.anchor||"middle"});t.textContent=s;return t;}
+function label(m,data){
+  const d=data&&data.m?data.m[m]:null, meta=META[m];
+  const side=k=>{
+    const tn=d?d[k==1?'t1':'t2']:null;
+    if(tn) return {name:(FLAG[tn]?FLAG[tn]+' ':'')+tn, known:true};
+    if(meta.sl) return {name:meta.sl[k-1], known:false};
+    const f=meta.f; return {name:'W'+f[k-1], known:false};
+  };
+  return {a:side(1), b:side(2), score:d?d.s:null, win:d?d.w:null};
+}
+function draw(data){
+  const svg=document.getElementById('bracket');
+  svg.innerHTML='';
+  [300,212,138,76].forEach(r=>svg.appendChild(el("circle",{cx:CX,cy:CY,r,class:"ring"})));
+  const conn=(c,p)=>svg.appendChild(el("line",{x1:c[0],y1:c[1],x2:p[0],y2:p[1],class:"lk"}));
+  R16P.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
+  QFP.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
+  SFP.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
+  conn(pos[101],pos[104]);conn(pos[102],pos[104]);
+  const order=[...ORDER,90,89,93,94,91,92,95,96,97,98,99,100,101,102];
+  order.forEach(m=>{
+    const [x,y]=pos[m], L=label(m,data), big=META[m].rd==='R32';
+    const w=big?128:104, h=big?38:32, g=el("g",{});
+    g.appendChild(el("rect",{x:x-w/2,y:y-h/2,width:w,height:h,rx:6,class:"nd"}));
+    g.appendChild(txt([x-w/2+6,y-h/2+11],"num","M"+m,{anchor:"start"}));
+    const r1=y-h/2+22, r2=y-h/2+33;
+    g.appendChild(txt([x-w/2+6,r1],L.win==1?"tmw":"tm",L.a.name,{anchor:"start"}));
+    g.appendChild(txt([x-w/2+6,r2],L.win==2?"tmw":"tm",L.b.name,{anchor:"start"}));
+    if(L.score){const parts=String(L.score).split('-');
+      g.appendChild(txt([x+w/2-6,r1],"sc",(parts[0]||'').trim(),{anchor:"end"}));
+      g.appendChild(txt([x+w/2-6,r2],"sc",(parts[1]||'').trim(),{anchor:"end"}));}
+    svg.appendChild(g);
+  });
+  const fb=label(104,data), champ=data&&data.champion?data.champion:null;
+  const fg=el("g",{});
+  fg.appendChild(el("rect",{x:CX-66,y:CY-26,width:132,height:52,rx:9,class:"fin"}));
+  fg.appendChild(txt([CX,CY-10],"ti", champ?(FLAG[champ]?FLAG[champ]+' ':'')+champ : "Final"));
+  fg.appendChild(txt([CX,CY+5],"ts", champ?"Champion":(fb.a.name+" v "+fb.b.name)));
+  fg.appendChild(txt([CX,CY+18],"ts","Jul 19 · New York NJ"));
+  svg.appendChild(fg);
+  const u=document.getElementById('updated');
+  u.textContent=(data&&data.updated?("Updated "+data.updated):"")+(data&&data.note?(" · "+data.note):"");
+}
+fetch('bracket.json?cb='+Date.now()).then(r=>r.json()).then(draw).catch(()=>draw(null));
+</script>
+</body>
+</html>
