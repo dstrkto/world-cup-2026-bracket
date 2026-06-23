@@ -32,6 +32,9 @@
   .sc{fill:var(--text);font-size:10px;}
   .ti{fill:var(--text);font-size:13px;font-weight:600;}
   .ts{fill:var(--muted);font-size:10px;}
+  .quals{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 12px;font-size:12px;}
+  .quals .lbl{color:var(--muted);margin-right:2px;}
+  .chip{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border:1px solid var(--line2);border-radius:999px;background:var(--surface);color:var(--text);}
 </style>
 </head>
 <body>
@@ -41,6 +44,7 @@
     <span class="meta" id="updated"></span>
   </header>
   <div class="legend">Outer ring → centre: Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final. Winners shown in green.</div>
+  <div class="quals" id="quals"></div>
   <svg id="bracket" viewBox="0 0 760 770" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
 </div>
 <script>
@@ -136,6 +140,9 @@ function draw(data){
   svg.appendChild(fg);
   const u=document.getElementById('updated');
   u.textContent=(data&&data.updated?("Updated "+data.updated):"")+(data&&data.note?(" · "+data.note):"");
+  const q=document.getElementById('quals');
+  const qt=(data&&data.qualified)||[];
+  q.innerHTML=qt.length?('<span class="lbl">Through to the R32:</span>'+qt.map(n=>'<span class="chip">'+(FLAG[n]||'')+' '+n+'</span>').join('')):'';
 }
 fetch('bracket.json?cb='+Date.now()).then(r=>r.json()).then(draw).catch(()=>draw(null));
 </script>

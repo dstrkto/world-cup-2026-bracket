@@ -2,6 +2,7 @@
  "updated": "2026-06-23",
  "note": "MD12 complete: NOR 3-2 SEN, ALG 2-1 JOR, ARG 2-0 AUT (Messi 18 WC goals record), FRA 3-0 IRQ; MD13 today (Grps K & L)",
  "champion": null,
+ "qualified": ["Mexico", "USA", "Germany", "France", "Norway", "Argentina"],
  "m": {
   "73": {
    "t1": null,
