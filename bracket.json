@@ -1,8 +1,8 @@
 {
- "updated": "2026-06-23",
- "note": "MD13: POR 5-0 UZB (Ronaldo brace, Mendes, Nematov OG, Leão); ENG 0-0 GHA; PAN vs CRO live (7PM ET); COL vs CGO later (10PM ET). POR done in Group K (7 pts, locked 1st).",
+ "updated": "2026-06-24",
+ "note": "MD13-14: CRO 1-0 PAN (Budimir); COL 1-0 CGO (Muñoz 76'). COL confirmed R32 (6 pts). POR 4 pts (not locked yet — plays COL Jun 26). Groups B/C/F deciding matches today.",
  "champion": null,
- "qualified": ["Mexico", "USA", "Germany", "France", "Norway", "Argentina"],
+ "qualified": ["Mexico", "USA", "Germany", "France", "Norway", "Argentina", "Colombia"],
  "m": {
   "73": {
    "t1": null,
@@ -89,7 +89,7 @@
    "w": null
   },
   "87": {
-   "t1": "Portugal",
+   "t1": null,
    "t2": null,
    "s": null,
    "w": null
