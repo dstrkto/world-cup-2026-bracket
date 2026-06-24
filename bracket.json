@@ -1,6 +1,6 @@
 {
  "updated": "2026-06-23",
- "note": "MD13 partial: POR 3-0 UZB (Ronaldo 6'+39', Mendes 17'); ENG vs GHA (4PM ET), PAN vs CRO (7PM ET), COL vs CGO (10PM ET) still to play",
+ "note": "MD13: POR 5-0 UZB (Ronaldo brace, Mendes, Nematov OG, Leão); ENG 0-0 GHA; PAN vs CRO live (7PM ET); COL vs CGO later (10PM ET). POR done in Group K (7 pts, locked 1st).",
  "champion": null,
  "qualified": ["Mexico", "USA", "Germany", "France", "Norway", "Argentina"],
  "m": {
@@ -89,7 +89,7 @@
    "w": null
   },
   "87": {
-   "t1": null,
+   "t1": "Portugal",
    "t2": null,
    "s": null,
    "w": null
