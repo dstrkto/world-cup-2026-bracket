@@ -1,12 +1,12 @@
 {
- "updated": "2026-06-24",
- "note": "MD13-14: CRO 1-0 PAN (Budimir); COL 1-0 CGO (Muñoz 76'). COL confirmed R32 (6 pts). POR 4 pts (not locked yet — plays COL Jun 26). Groups B/C/F deciding matches today.",
+ "updated": "2026-06-25",
+ "note": "Groups A/B/C complete. MEX unbeaten winners of A (9 pts, 0 GA). SUI win B; CAN runners-up. BRA win C on GD over MAR (both 7 pts). Groups D/E/F matchday 3 today (Jun 25): ECU-GER, CUR-CIV at 4pm ET; JPN-SWE, TUN-NED at 7pm ET; TUR-USA, PAR-AUS at 10pm ET.",
  "champion": null,
- "qualified": ["Mexico", "USA", "Germany", "France", "Norway", "Argentina", "Colombia"],
+ "qualified": ["USA", "Germany", "France", "Norway", "Argentina", "Colombia"],
  "m": {
   "73": {
-   "t1": null,
-   "t2": null,
+   "t1": "South Africa",
+   "t2": "Canada",
    "s": null,
    "w": null
   },
@@ -18,12 +18,12 @@
   },
   "75": {
    "t1": null,
-   "t2": null,
+   "t2": "Morocco",
    "s": null,
    "w": null
   },
   "76": {
-   "t1": null,
+   "t1": "Brazil",
    "t2": null,
    "s": null,
    "w": null
@@ -41,7 +41,7 @@
    "w": null
   },
   "79": {
-   "t1": null,
+   "t1": "Mexico",
    "t2": null,
    "s": null,
    "w": null
@@ -77,7 +77,7 @@
    "w": null
   },
   "85": {
-   "t1": null,
+   "t1": "Switzerland",
    "t2": null,
    "s": null,
    "w": null
