@@ -1,8 +1,8 @@
 {
- "updated": "2026-06-25",
- "note": "Groups A–F complete (D final tonight 10pm ET: TUR-USA, PAR-AUS). Shock result: ECU 2-1 GER. GER win E on GD over CIV. NED win F; JPN runners-up (0-0 SWE). Groups G–L finish Jun 26–27.",
+ "updated": "2026-06-26",
+ "note": "Groups A–F complete. D: USA 1st, AUS 2nd (TUR 3-2 USA; PAR 0-0 AUS). F: NED 3-1 TUN, JPN 1-1 SWE (corrected). Groups G–L finishing Jun 26–27; I (FRA vs NOR, IRQ vs SEN) kicks off 3 PM ET today.",
  "champion": null,
- "qualified": ["France", "Norway", "Argentina", "Colombia"],
+ "qualified": ["France", "Norway", "Argentina", "Colombia", "Portugal", "England"],
  "m": {
   "73": {
    "t1": "South Africa",
@@ -95,7 +95,7 @@
    "w": null
   },
   "88": {
-   "t1": null,
+   "t1": "Australia",
    "t2": null,
    "s": null,
    "w": null
