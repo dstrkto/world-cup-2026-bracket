@@ -30,6 +30,7 @@
   .tmw{fill:var(--win);font-size:11px;font-weight:600;}
   .sl{fill:var(--muted);font-size:10px;}
   .sc{fill:var(--text);font-size:10px;}
+  .fl{font-size:11px;}
   .ti{fill:var(--text);font-size:13px;font-weight:600;}
   .ts{fill:var(--muted);font-size:10px;}
   .quals{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 12px;font-size:12px;}
@@ -45,10 +46,10 @@
   </header>
   <div class="legend">Outer ring → centre: Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final. Winners shown in green.</div>
   <div class="quals" id="quals"></div>
-  <svg id="bracket" viewBox="0 0 760 770" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
+  <svg id="bracket" viewBox="0 0 900 900" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
 </div>
 <script>
-const CX=380, CY=380, R={r32:300,r16:212,qf:138,sf:76};
+const CX=450, CY=450, R={r32:375,r16:265,qf:173,sf:95};
 const ORDER=[73,75,74,77,83,84,81,82,76,78,79,80,86,88,85,87];
 const META={
  73:{rd:'R32',d:'Jun 28',v:'Los Angeles',sl:['RU A','RU B']},
@@ -127,9 +128,10 @@ function draw(data){
     const r1=y-h/2+22, r2=y-h/2+33;
     const addTeam=(side,ry,isWin)=>{
       const lx=x-w/2+6;
-      if(side.flag){
-        g.appendChild(el("image",{href:"https://flagcdn.com/16x11/"+side.flag+".png",x:lx,y:ry-9,width:16,height:11}));
-        g.appendChild(txt([lx+19,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
+      const emoji=side.known&&FLAG[side.name]?FLAG[side.name]:null;
+      if(emoji){
+        g.appendChild(txt([lx,ry],"fl",emoji,{anchor:"start"}));
+        g.appendChild(txt([lx+18,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
       } else {
         g.appendChild(txt([lx,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
       }
@@ -144,12 +146,8 @@ function draw(data){
   const fb=label(104,data), champ=data&&data.champion?data.champion:null;
   const fg=el("g",{});
   fg.appendChild(el("rect",{x:CX-66,y:CY-26,width:132,height:52,rx:9,class:"fin"}));
-  if(champ && CODE[champ]){
-    fg.appendChild(el("image",{href:"https://flagcdn.com/16x11/"+CODE[champ]+".png",x:CX-50,y:CY-20,width:16,height:11}));
-    fg.appendChild(txt([CX-30,CY-10],"ti",champ,{anchor:"start"}));
-  } else {
-    fg.appendChild(txt([CX,CY-10],"ti",champ||"Final"));
-  }
+  const champEmoji=champ&&FLAG[champ]?FLAG[champ]:'';
+  fg.appendChild(txt([CX,CY-10],"ti",champ?(champEmoji+' '+champ):"Final"));
   fg.appendChild(txt([CX,CY+5],"ts", champ?"Champion":(fb.a.name+" v "+fb.b.name)));
   fg.appendChild(txt([CX,CY+18],"ts","Jul 19 · New York NJ"));
   svg.appendChild(fg);
