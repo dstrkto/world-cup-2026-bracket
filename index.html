@@ -87,6 +87,7 @@ const R16P=[[73,75,90],[74,77,89],[83,84,93],[81,82,94],[76,78,91],[79,80,92],[8
 const QFP=[[90,89,97],[93,94,98],[91,92,99],[95,96,100]];
 const SFP=[[97,98,101],[99,100,102]];
 const FLAG={"Mexico":"🇲🇽","South Africa":"🇿🇦","South Korea":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Bosnia and Herzegovina":"🇧🇦","Qatar":"🇶🇦","Switzerland":"🇨🇭","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","USA":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Ivory Coast":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cape Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
+const CODE={"Mexico":"mx","South Africa":"za","South Korea":"kr","Czechia":"cz","Canada":"ca","Bosnia and Herzegovina":"ba","Qatar":"qa","Switzerland":"ch","Brazil":"br","Morocco":"ma","Haiti":"ht","Scotland":"gb-sct","USA":"us","Paraguay":"py","Australia":"au","Türkiye":"tr","Germany":"de","Curaçao":"cw","Ivory Coast":"ci","Ecuador":"ec","Netherlands":"nl","Japan":"jp","Sweden":"se","Tunisia":"tn","Belgium":"be","Egypt":"eg","Iran":"ir","New Zealand":"nz","Spain":"es","Cape Verde":"cv","Saudi Arabia":"sa","Uruguay":"uy","France":"fr","Senegal":"sn","Iraq":"iq","Norway":"no","Argentina":"ar","Algeria":"dz","Austria":"at","Jordan":"jo","Portugal":"pt","DR Congo":"cd","Uzbekistan":"uz","Colombia":"co","England":"gb-eng","Croatia":"hr","Ghana":"gh","Panama":"pa"};
 const ang=i=>(-90+i*22.5)*Math.PI/180;
 const pt=(r,a)=>[CX+r*Math.cos(a), CY+r*Math.sin(a)];
 const pos={}, an={};
@@ -102,9 +103,9 @@ function label(m,data){
   const d=data&&data.m?data.m[m]:null, meta=META[m];
   const side=k=>{
     const tn=d?d[k==1?'t1':'t2']:null;
-    if(tn) return {name:(FLAG[tn]?FLAG[tn]+' ':'')+tn, known:true};
-    if(meta.sl) return {name:meta.sl[k-1], known:false};
-    const f=meta.f; return {name:'W'+f[k-1], known:false};
+    if(tn) return {name:tn, flag:CODE[tn]||null, known:true};
+    if(meta.sl) return {name:meta.sl[k-1], flag:null, known:false};
+    const f=meta.f; return {name:'W'+f[k-1], flag:null, known:false};
   };
   return {a:side(1), b:side(2), score:d?d.s:null, win:d?d.w:null};
 }
@@ -124,8 +125,17 @@ function draw(data){
     g.appendChild(el("rect",{x:x-w/2,y:y-h/2,width:w,height:h,rx:6,class:"nd"}));
     g.appendChild(txt([x-w/2+6,y-h/2+11],"num","M"+m,{anchor:"start"}));
     const r1=y-h/2+22, r2=y-h/2+33;
-    g.appendChild(txt([x-w/2+6,r1],L.win==1?"tmw":"tm",L.a.name,{anchor:"start"}));
-    g.appendChild(txt([x-w/2+6,r2],L.win==2?"tmw":"tm",L.b.name,{anchor:"start"}));
+    const addTeam=(side,ry,isWin)=>{
+      const lx=x-w/2+6;
+      if(side.flag){
+        g.appendChild(el("image",{href:"https://flagcdn.com/16x11/"+side.flag+".png",x:lx,y:ry-9,width:16,height:11}));
+        g.appendChild(txt([lx+19,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
+      } else {
+        g.appendChild(txt([lx,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
+      }
+    };
+    addTeam(L.a,r1,L.win==1);
+    addTeam(L.b,r2,L.win==2);
     if(L.score){const parts=String(L.score).split('-');
       g.appendChild(txt([x+w/2-6,r1],"sc",(parts[0]||'').trim(),{anchor:"end"}));
       g.appendChild(txt([x+w/2-6,r2],"sc",(parts[1]||'').trim(),{anchor:"end"}));}
@@ -134,7 +144,12 @@ function draw(data){
   const fb=label(104,data), champ=data&&data.champion?data.champion:null;
   const fg=el("g",{});
   fg.appendChild(el("rect",{x:CX-66,y:CY-26,width:132,height:52,rx:9,class:"fin"}));
-  fg.appendChild(txt([CX,CY-10],"ti", champ?(FLAG[champ]?FLAG[champ]+' ':'')+champ : "Final"));
+  if(champ && CODE[champ]){
+    fg.appendChild(el("image",{href:"https://flagcdn.com/16x11/"+CODE[champ]+".png",x:CX-50,y:CY-20,width:16,height:11}));
+    fg.appendChild(txt([CX-30,CY-10],"ti",champ,{anchor:"start"}));
+  } else {
+    fg.appendChild(txt([CX,CY-10],"ti",champ||"Final"));
+  }
   fg.appendChild(txt([CX,CY+5],"ts", champ?"Champion":(fb.a.name+" v "+fb.b.name)));
   fg.appendChild(txt([CX,CY+18],"ts","Jul 19 · New York NJ"));
   svg.appendChild(fg);
