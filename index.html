@@ -49,7 +49,7 @@
   <svg id="bracket" viewBox="0 0 900 900" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
 </div>
 <script>
-const CX=450, CY=450, R={r32:375,r16:265,qf:173,sf:95};
+const CX=450, CY=450, R={r32:375,r16:265,qf:173,sf:155};
 const ORDER=[73,75,74,77,83,84,81,82,76,78,79,80,86,88,85,87];
 const META={
  73:{rd:'R32',d:'Jun 28',v:'Los Angeles',sl:['RU A','RU B']},
@@ -113,7 +113,7 @@ function label(m,data){
 function draw(data){
   const svg=document.getElementById('bracket');
   svg.innerHTML='';
-  [300,212,138,76].forEach(r=>svg.appendChild(el("circle",{cx:CX,cy:CY,r,class:"ring"})));
+  [R.r32,R.r16,R.qf,R.sf].forEach(r=>svg.appendChild(el("circle",{cx:CX,cy:CY,r,class:"ring"})));
   const conn=(c,p)=>svg.appendChild(el("line",{x1:c[0],y1:c[1],x2:p[0],y2:p[1],class:"lk"}));
   R16P.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
   QFP.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
@@ -122,7 +122,7 @@ function draw(data){
   const order=[...ORDER,90,89,93,94,91,92,95,96,97,98,99,100,101,102];
   order.forEach(m=>{
     const [x,y]=pos[m], L=label(m,data), big=META[m].rd==='R32';
-    const w=big?128:104, h=big?38:32, g=el("g",{});
+    const w=big?128:104, h=big?38:36, g=el("g",{});
     g.appendChild(el("rect",{x:x-w/2,y:y-h/2,width:w,height:h,rx:6,class:"nd"}));
     g.appendChild(txt([x-w/2+6,y-h/2+11],"num","M"+m,{anchor:"start"}));
     const r1=y-h/2+22, r2=y-h/2+33;
