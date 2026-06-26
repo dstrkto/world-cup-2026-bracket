@@ -1,8 +1,8 @@
 {
  "updated": "2026-06-25",
- "note": "Groups A/B/C complete. MEX unbeaten winners of A (9 pts, 0 GA). SUI win B; CAN runners-up. BRA win C on GD over MAR (both 7 pts). Groups D/E/F matchday 3 today (Jun 25): ECU-GER, CUR-CIV at 4pm ET; JPN-SWE, TUN-NED at 7pm ET; TUR-USA, PAR-AUS at 10pm ET.",
+ "note": "Groups A–F complete (D final tonight 10pm ET: TUR-USA, PAR-AUS). Shock result: ECU 2-1 GER. GER win E on GD over CIV. NED win F; JPN runners-up (0-0 SWE). Groups G–L finish Jun 26–27.",
  "champion": null,
- "qualified": ["USA", "Germany", "France", "Norway", "Argentina", "Colombia"],
+ "qualified": ["France", "Norway", "Argentina", "Colombia"],
  "m": {
   "73": {
    "t1": "South Africa",
@@ -11,20 +11,20 @@
    "w": null
   },
   "74": {
-   "t1": null,
+   "t1": "Germany",
    "t2": null,
    "s": null,
    "w": null
   },
   "75": {
-   "t1": null,
+   "t1": "Netherlands",
    "t2": "Morocco",
    "s": null,
    "w": null
   },
   "76": {
    "t1": "Brazil",
-   "t2": null,
+   "t2": "Japan",
    "s": null,
    "w": null
   },
@@ -35,7 +35,7 @@
    "w": null
   },
   "78": {
-   "t1": null,
+   "t1": "Ivory Coast",
    "t2": null,
    "s": null,
    "w": null
@@ -53,7 +53,7 @@
    "w": null
   },
   "81": {
-   "t1": null,
+   "t1": "USA",
    "t2": null,
    "s": null,
    "w": null
