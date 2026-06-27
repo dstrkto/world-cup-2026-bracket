@@ -1,6 +1,6 @@
 {
  "updated": "2026-06-26",
- "note": "Groups A–I complete (I: FRA 9pts 1st, NOR 6pts 2nd, SEN 3rd). Dembélé hat-trick as FRA beat NOR 4-1; SEN 5-0 IRQ. G/H finals still today (URU vs ESP 8 PM ET, EGY vs IRN 11 PM ET). J/K/L finals Jun 27. M81 confirmed: USA vs Bosnia and Herzegovina.",
+ "note": "Group H complete: ESP 1st (7pts), CPV 2nd (3pts), URU out. EGY vs IRN + NZL vs BEL still tonight (Jun 26 11PM ET). Groups J/K/L finals Jun 27.",
  "champion": null,
  "qualified": ["Argentina", "Colombia", "Portugal", "England"],
  "m": {
@@ -71,7 +71,7 @@
    "w": null
   },
   "84": {
-   "t1": null,
+   "t1": "Spain",
    "t2": null,
    "s": null,
    "w": null
@@ -84,7 +84,7 @@
   },
   "86": {
    "t1": null,
-   "t2": null,
+   "t2": "Cape Verde",
    "s": null,
    "w": null
   },
