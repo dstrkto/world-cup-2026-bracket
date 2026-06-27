@@ -1,8 +1,8 @@
 {
  "updated": "2026-06-26",
- "note": "Groups A–F complete. E: GER tops (6pts GD+6) over IVC (6pts) after ECU 2-1 GER upset. F: NED 1st, JPN 2nd. G/H/I finals Jun 26 (FRA vs NOR 3 PM ET, URU vs ESP 8 PM ET, EGY vs IRN 11 PM ET), J/K/L finals Jun 27. M81 confirmed: USA vs Bosnia and Herzegovina.",
+ "note": "Groups A–I complete (I: FRA 9pts 1st, NOR 6pts 2nd, SEN 3rd). Dembélé hat-trick as FRA beat NOR 4-1; SEN 5-0 IRQ. G/H finals still today (URU vs ESP 8 PM ET, EGY vs IRN 11 PM ET). J/K/L finals Jun 27. M81 confirmed: USA vs Bosnia and Herzegovina.",
  "champion": null,
- "qualified": ["France", "Norway", "Argentina", "Colombia", "Portugal", "England"],
+ "qualified": ["Argentina", "Colombia", "Portugal", "England"],
  "m": {
   "73": {
    "t1": "South Africa",
@@ -29,14 +29,14 @@
    "w": null
   },
   "77": {
-   "t1": null,
+   "t1": "France",
    "t2": null,
    "s": null,
    "w": null
   },
   "78": {
    "t1": "Ivory Coast",
-   "t2": null,
+   "t2": "Norway",
    "s": null,
    "w": null
   },
