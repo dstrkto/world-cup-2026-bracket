@@ -1,6 +1,6 @@
 {
  "updated": "2026-06-27",
- "note": "Group stage essentially complete (JOR-ARG in progress). All group slots set; 3rd-place bracket assignments TBD.",
+ "note": "Group stage complete. All R32 slots filled including 3rd-place teams.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -12,7 +12,7 @@
   },
   "74": {
    "t1": "Germany",
-   "t2": null,
+   "t2": "Paraguay",
    "s": null,
    "w": null
   },
@@ -30,7 +30,7 @@
   },
   "77": {
    "t1": "France",
-   "t2": null,
+   "t2": "Sweden",
    "s": null,
    "w": null
   },
@@ -42,13 +42,13 @@
   },
   "79": {
    "t1": "Mexico",
-   "t2": null,
+   "t2": "Ecuador",
    "s": null,
    "w": null
   },
   "80": {
    "t1": "England",
-   "t2": null,
+   "t2": "DR Congo",
    "s": null,
    "w": null
   },
@@ -60,7 +60,7 @@
   },
   "82": {
    "t1": "Belgium",
-   "t2": null,
+   "t2": "Senegal",
    "s": null,
    "w": null
   },
@@ -78,7 +78,7 @@
   },
   "85": {
    "t1": "Switzerland",
-   "t2": null,
+   "t2": "Algeria",
    "s": null,
    "w": null
   },
@@ -90,7 +90,7 @@
   },
   "87": {
    "t1": "Colombia",
-   "t2": null,
+   "t2": "Ghana",
    "s": null,
    "w": null
   },
