@@ -1,8 +1,8 @@
 {
  "updated": "2026-06-27",
- "note": "Groups A-I all done. BEL W G, EGY RU G; AUS RU D added. Jun 27: J/K/L finals today (L 5pm, K 7:30pm, J 10pm ET).",
+ "note": "Group stage essentially complete (JOR-ARG in progress). All group slots set; 3rd-place bracket assignments TBD.",
  "champion": null,
- "qualified": ["Colombia", "Portugal", "England"],
+ "qualified": [],
  "m": {
   "73": {
    "t1": "South Africa",
@@ -47,7 +47,7 @@
    "w": null
   },
   "80": {
-   "t1": null,
+   "t1": "England",
    "t2": null,
    "s": null,
    "w": null
@@ -65,14 +65,14 @@
    "w": null
   },
   "83": {
-   "t1": null,
-   "t2": null,
+   "t1": "Portugal",
+   "t2": "Croatia",
    "s": null,
    "w": null
   },
   "84": {
    "t1": "Spain",
-   "t2": null,
+   "t2": "Austria",
    "s": null,
    "w": null
   },
@@ -89,7 +89,7 @@
    "w": null
   },
   "87": {
-   "t1": null,
+   "t1": "Colombia",
    "t2": null,
    "s": null,
    "w": null
