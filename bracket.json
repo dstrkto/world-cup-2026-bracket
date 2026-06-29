@@ -1,14 +1,14 @@
 {
- "updated": "2026-06-27",
- "note": "Group stage complete. All R32 slots filled including 3rd-place teams.",
+ "updated": "2026-06-28",
+ "note": "R32 underway. Canada stuns South Africa 1-0 in stoppage time.",
  "champion": null,
  "qualified": [],
  "m": {
   "73": {
    "t1": "South Africa",
    "t2": "Canada",
-   "s": null,
-   "w": null
+   "s": "0-1",
+   "w": 2
   },
   "74": {
    "t1": "Germany",
