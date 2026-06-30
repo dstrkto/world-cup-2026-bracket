@@ -1,6 +1,6 @@
 {
- "updated": "2026-06-29",
- "note": "R32 Day 2: Brazil edges Japan 2-1; Paraguay stun Germany 4-3 pens.",
+ "updated": "2026-06-30",
+ "note": "R32: Morocco stun Netherlands 3-2 on pens; June 30 R32 matches upcoming.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -19,8 +19,8 @@
   "75": {
    "t1": "Netherlands",
    "t2": "Morocco",
-   "s": null,
-   "w": null
+   "s": "1-1 (2-3 pens)",
+   "w": 2
   },
   "76": {
    "t1": "Brazil",
