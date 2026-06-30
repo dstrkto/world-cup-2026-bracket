@@ -1,6 +1,6 @@
 {
  "updated": "2026-06-30",
- "note": "R32: Morocco stun Netherlands 3-2 on pens; June 30 R32 matches upcoming.",
+ "note": "R32 Day 3: Norway 1-0 CIV (live, 2nd half); FRA-SWE & MEX-ECU later. M90 set: Canada vs Morocco (Jul 4, Houston).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -101,19 +101,19 @@
    "w": null
   },
   "89": {
-   "t1": null,
+   "t1": "Paraguay",
    "t2": null,
    "s": null,
    "w": null
   },
   "90": {
-   "t1": null,
-   "t2": null,
+   "t1": "Canada",
+   "t2": "Morocco",
    "s": null,
    "w": null
   },
   "91": {
-   "t1": null,
+   "t1": "Brazil",
    "t2": null,
    "s": null,
    "w": null
