@@ -1,6 +1,6 @@
 {
- "updated": "2026-06-28",
- "note": "R32 underway. Canada stuns South Africa 1-0 in stoppage time.",
+ "updated": "2026-06-29",
+ "note": "R32 Day 2: Brazil edges Japan 2-1; Paraguay stun Germany 4-3 pens.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -13,8 +13,8 @@
   "74": {
    "t1": "Germany",
    "t2": "Paraguay",
-   "s": null,
-   "w": null
+   "s": "1-1 (4-3 pens)",
+   "w": 2
   },
   "75": {
    "t1": "Netherlands",
@@ -25,8 +25,8 @@
   "76": {
    "t1": "Brazil",
    "t2": "Japan",
-   "s": null,
-   "w": null
+   "s": "2-1",
+   "w": 1
   },
   "77": {
    "t1": "France",
