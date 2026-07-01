@@ -1,6 +1,6 @@
 {
- "updated": "2026-06-30",
- "note": "R32 Day 3: Norway 1-0 CIV (live, 2nd half); FRA-SWE & MEX-ECU later. M90 set: Canada vs Morocco (Jul 4, Houston).",
+ "updated": "2026-07-01",
+ "note": "R32 Day 4 underway: England beat DR Congo 2-1 (Kane brace). Belgium-Senegal & USA-Bosnia later today. R16 set: Paraguay vs France, Brazil vs Norway, Mexico vs England.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -31,26 +31,26 @@
   "77": {
    "t1": "France",
    "t2": "Sweden",
-   "s": null,
-   "w": null
+   "s": "3-0",
+   "w": 1
   },
   "78": {
    "t1": "Ivory Coast",
    "t2": "Norway",
-   "s": null,
-   "w": null
+   "s": "1-2",
+   "w": 2
   },
   "79": {
    "t1": "Mexico",
    "t2": "Ecuador",
-   "s": null,
-   "w": null
+   "s": "2-0",
+   "w": 1
   },
   "80": {
    "t1": "England",
    "t2": "DR Congo",
-   "s": null,
-   "w": null
+   "s": "2-1",
+   "w": 1
   },
   "81": {
    "t1": "USA",
@@ -102,7 +102,7 @@
   },
   "89": {
    "t1": "Paraguay",
-   "t2": null,
+   "t2": "France",
    "s": null,
    "w": null
   },
@@ -114,13 +114,13 @@
   },
   "91": {
    "t1": "Brazil",
-   "t2": null,
+   "t2": "Norway",
    "s": null,
    "w": null
   },
   "92": {
-   "t1": null,
-   "t2": null,
+   "t1": "Mexico",
+   "t2": "England",
    "s": null,
    "w": null
   },
