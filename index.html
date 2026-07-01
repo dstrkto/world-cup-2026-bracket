@@ -8,10 +8,12 @@
   :root{
     --bg:#ffffff; --surface:#f5f5f3; --line:#d9d7d1; --line2:#bfbcb4;
     --text:#1f1e1b; --muted:#6b6862; --accent:#c8842b; --accentbg:#fcefdb; --win:#1a7f4b;
+    --empty:#efeeea; --ringline:#ffffff;
   }
   @media (prefers-color-scheme: dark){
     :root{ --bg:#1a1a18; --surface:#26261f; --line:#3a392f; --line2:#52503f;
-      --text:#f0efe9; --muted:#a3a096; --accent:#e0a44e; --accentbg:#3a2e17; --win:#52c98a; }
+      --text:#f0efe9; --muted:#a3a096; --accent:#e0a44e; --accentbg:#3a2e17; --win:#52c98a;
+      --empty:#222220; --ringline:#1a1a18; }
   }
   html,body{margin:0;background:var(--bg);color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
@@ -21,18 +23,20 @@
   .meta{font-size:12px;color:var(--muted);}
   .legend{font-size:12px;color:var(--muted);margin:2px 0 6px;}
   svg{width:100%;height:auto;display:block;}
-  .lk{stroke:var(--line);stroke-width:1.2;fill:none;}
-  .ring{fill:none;stroke:var(--line);stroke-width:1;stroke-dasharray:2 5;opacity:.7;}
-  .nd{fill:var(--surface);stroke:var(--line2);stroke-width:1;}
-  .fin{fill:var(--accentbg);stroke:var(--accent);stroke-width:1.6;}
-  .num{fill:var(--muted);font-size:9px;}
-  .tm{fill:var(--text);font-size:11px;}
-  .tmw{fill:var(--win);font-size:11px;font-weight:600;}
-  .sl{fill:var(--muted);font-size:10px;}
-  .sc{fill:var(--text);font-size:10px;}
-  .fl{font-size:11px;}
-  .ti{fill:var(--text);font-size:13px;font-weight:600;}
-  .ts{fill:var(--muted);font-size:10px;}
+  .seg{stroke:var(--ringline);stroke-width:2;}
+  .seg-empty{fill:var(--empty);}
+  .seg-loser{opacity:.45;}
+  .fl{font-size:20px;}
+  .fl-sm{font-size:16px;}
+  .code{fill:var(--text);font-size:10px;font-weight:600;letter-spacing:.4px;}
+  .slot{fill:var(--muted);font-size:9px;}
+  .sc{fill:var(--text);font-size:11px;font-weight:700;}
+  .mnum{fill:var(--muted);font-size:8px;}
+  .ti{fill:var(--text);font-size:14px;font-weight:700;}
+  .ts{fill:var(--muted);font-size:9px;}
+  .champ-fl{font-size:30px;}
+  .ctr{fill:var(--surface);stroke:var(--line2);stroke-width:1.5;}
+  .ctr-champ{fill:var(--accentbg);stroke:var(--accent);stroke-width:2;}
   .quals{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 12px;font-size:12px;}
   .quals .lbl{color:var(--muted);margin-right:2px;}
   .chip{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border:1px solid var(--line2);border-radius:999px;background:var(--surface);color:var(--text);}
@@ -44,12 +48,15 @@
     <h1>2026 FIFA World Cup — road to the final</h1>
     <span class="meta" id="updated"></span>
   </header>
-  <div class="legend">Outer ring → centre: Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final. Winners shown in green.</div>
+  <div class="legend">Outer ring → centre: Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final. Winners advance inward; losers fade. Champion at the centre.</div>
   <div class="quals" id="quals"></div>
   <svg id="bracket" viewBox="0 0 900 900" role="img" aria-label="Radial knockout bracket for the 2026 FIFA World Cup"></svg>
 </div>
 <script>
-const CX=450, CY=450, R={r32:375,r16:265,qf:173,sf:155};
+const CX=450, CY=450;
+// ring bands, outer → inner: [outer radius, inner radius]
+const BAND={R32:[443,373], R16:[373,303], QF:[303,233], SF:[233,163], F:[163,96]};
+const CTR=88; // champion circle
 const ORDER=[73,75,74,77,83,84,81,82,76,78,79,80,86,88,85,87];
 const META={
  73:{rd:'R32',d:'Jun 28',v:'Los Angeles',sl:['RU A','RU B']},
@@ -82,75 +89,100 @@ const META={
  100:{rd:'QF',d:'Jul 11',v:'Kansas City',f:[95,96]},
  101:{rd:'SF',d:'Jul 14',v:'Dallas',f:[97,98]},
  102:{rd:'SF',d:'Jul 15',v:'Atlanta',f:[99,100]},
- 104:{rd:'Final',d:'Jul 19',v:'New York NJ',f:[101,102]}
+ 104:{rd:'F',d:'Jul 19',v:'New York NJ',f:[101,102]}
 };
-const R16P=[[73,75,90],[74,77,89],[83,84,93],[81,82,94],[76,78,91],[79,80,92],[86,88,95],[85,87,96]];
-const QFP=[[90,89,97],[93,94,98],[91,92,99],[95,96,100]];
-const SFP=[[97,98,101],[99,100,102]];
 const FLAG={"Mexico":"🇲🇽","South Africa":"🇿🇦","South Korea":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Bosnia and Herzegovina":"🇧🇦","Qatar":"🇶🇦","Switzerland":"🇨🇭","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","USA":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Ivory Coast":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cape Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
-const CODE={"Mexico":"mx","South Africa":"za","South Korea":"kr","Czechia":"cz","Canada":"ca","Bosnia and Herzegovina":"ba","Qatar":"qa","Switzerland":"ch","Brazil":"br","Morocco":"ma","Haiti":"ht","Scotland":"gb-sct","USA":"us","Paraguay":"py","Australia":"au","Türkiye":"tr","Germany":"de","Curaçao":"cw","Ivory Coast":"ci","Ecuador":"ec","Netherlands":"nl","Japan":"jp","Sweden":"se","Tunisia":"tn","Belgium":"be","Egypt":"eg","Iran":"ir","New Zealand":"nz","Spain":"es","Cape Verde":"cv","Saudi Arabia":"sa","Uruguay":"uy","France":"fr","Senegal":"sn","Iraq":"iq","Norway":"no","Argentina":"ar","Algeria":"dz","Austria":"at","Jordan":"jo","Portugal":"pt","DR Congo":"cd","Uzbekistan":"uz","Colombia":"co","England":"gb-eng","Croatia":"hr","Ghana":"gh","Panama":"pa"};
-const ang=i=>(-90+i*22.5)*Math.PI/180;
+const ABBR={"Mexico":"MEX","South Africa":"RSA","South Korea":"KOR","Czechia":"CZE","Canada":"CAN","Bosnia and Herzegovina":"BIH","Qatar":"QAT","Switzerland":"SUI","Brazil":"BRA","Morocco":"MAR","Haiti":"HAI","Scotland":"SCO","USA":"USA","Paraguay":"PAR","Australia":"AUS","Türkiye":"TUR","Germany":"GER","Curaçao":"CUW","Ivory Coast":"CIV","Ecuador":"ECU","Netherlands":"NED","Japan":"JPN","Sweden":"SWE","Tunisia":"TUN","Belgium":"BEL","Egypt":"EGY","Iran":"IRN","New Zealand":"NZL","Spain":"ESP","Cape Verde":"CPV","Saudi Arabia":"KSA","Uruguay":"URU","France":"FRA","Senegal":"SEN","Iraq":"IRQ","Norway":"NOR","Argentina":"ARG","Algeria":"ALG","Austria":"AUT","Jordan":"JOR","Portugal":"POR","DR Congo":"COD","Uzbekistan":"UZB","Colombia":"COL","England":"ENG","Croatia":"CRO","Ghana":"GHA","Panama":"PAN"};
+// primary national colors for wedge fills
+const COLOR={"Mexico":"#046a38","South Africa":"#007749","South Korea":"#cd2e3a","Czechia":"#d7141a","Canada":"#d80621","Bosnia and Herzegovina":"#002f6c","Qatar":"#8a1538","Switzerland":"#d52b1e","Brazil":"#ffdf00","Morocco":"#c1272d","Haiti":"#00209f","Scotland":"#005eb8","USA":"#3c3b6e","Paraguay":"#d52b1e","Australia":"#ffcd00","Türkiye":"#e30a17","Germany":"#000000","Curaçao":"#002b7f","Ivory Coast":"#f77f00","Ecuador":"#ffdd00","Netherlands":"#ff7f00","Japan":"#003580","Sweden":"#ffcd00","Tunisia":"#e70013","Belgium":"#ed2939","Egypt":"#ce1126","Iran":"#239f40","New Zealand":"#000000","Spain":"#aa151b","Cape Verde":"#003893","Saudi Arabia":"#006c35","Uruguay":"#7bafd4","France":"#002395","Senegal":"#00853f","Iraq":"#007a3d","Norway":"#ba0c2f","Argentina":"#75aadb","Algeria":"#006233","Austria":"#ed2939","Jordan":"#007a3d","Portugal":"#046a38","DR Congo":"#007fff","Uzbekistan":"#0099b5","Colombia":"#fcd116","England":"#cf081f","Croatia":"#ff0000","Ghana":"#fcd116","Panama":"#da121a"};
+const D2R=Math.PI/180;
 const pt=(r,a)=>[CX+r*Math.cos(a), CY+r*Math.sin(a)];
-const pos={}, an={};
-ORDER.forEach((m,i)=>{an[m]=ang(i); pos[m]=pt(R.r32,an[m]);});
-R16P.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.r16,an[m]);});
-QFP.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.qf,an[m]);});
-SFP.forEach(([a,b,m])=>{an[m]=(an[a]+an[b])/2; pos[m]=pt(R.sf,an[m]);});
-pos[104]=[CX,CY];
+// angular spans: R32 match i covers 22.5°, centred like the old layout
+const SPAN={};
+ORDER.forEach((m,i)=>{const a0=(-90-11.25+i*22.5)*D2R; SPAN[m]=[a0, a0+22.5*D2R];});
+[89,90,91,92,93,94,95,96,97,98,99,100,101,102,104].forEach(m=>{
+  const f=META[m].f; SPAN[m]=[SPAN[f[0]][0], SPAN[f[1]][1]];
+});
 const NS="http://www.w3.org/2000/svg";
 const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
-function txt(p,cls,s,opt={}){const t=el("text",{x:p[0],y:p[1],class:cls,"text-anchor":opt.anchor||"middle"});t.textContent=s;return t;}
-function label(m,data){
-  const d=data&&data.m?data.m[m]:null, meta=META[m];
-  const side=k=>{
-    const tn=d?d[k==1?'t1':'t2']:null;
-    if(tn) return {name:tn, flag:CODE[tn]||null, known:true};
-    if(meta.sl) return {name:meta.sl[k-1], flag:null, known:false};
-    const f=meta.f; return {name:'W'+f[k-1], flag:null, known:false};
-  };
-  return {a:side(1), b:side(2), score:d?d.s:null, win:d?d.w:null};
+function txt(p,cls,s,opt={}){const t=el("text",{x:p[0],y:p[1],class:cls,"text-anchor":opt.anchor||"middle","dominant-baseline":opt.vb||"middle"});t.textContent=s;return t;}
+function sector(r1,r0,a0,a1){ // annular sector path, r1=outer r0=inner
+  const large=(a1-a0)>Math.PI?1:0;
+  const [x1,y1]=pt(r1,a0),[x2,y2]=pt(r1,a1),[x3,y3]=pt(r0,a1),[x4,y4]=pt(r0,a0);
+  return "M"+x1+" "+y1+" A"+r1+" "+r1+" 0 "+large+" 1 "+x2+" "+y2+
+         " L"+x3+" "+y3+" A"+r0+" "+r0+" 0 "+large+" 0 "+x4+" "+y4+" Z";
 }
+function teamInfo(data,m,k){
+  const d=data&&data.m?data.m[m]:null, meta=META[m];
+  const tn=d?d[k==1?'t1':'t2']:null;
+  if(tn) return {name:tn, known:true};
+  if(meta.sl) return {name:meta.sl[k-1], known:false};
+  return {name:'W'+meta.f[k-1], known:false};
+}
+function score(data,m,k){
+  const d=data&&data.m?data.m[m]:null;
+  if(!d||!d.s) return null;
+  const s=String(d.s);
+  const g=s.match(/^\s*(\d+)\s*-\s*(\d+)/);      // regulation score "a-b"
+  if(!g) return null;
+  const p=s.match(/\(\s*(\d+)\s*-\s*(\d+)/);     // optional pens "(x-y p)"
+  return g[k]+(p?" ("+p[k]+")":"");
+}
+function winner(data,m){const d=data&&data.m?data.m[m]:null;return d?d.w:null;}
 function draw(data){
   const svg=document.getElementById('bracket');
   svg.innerHTML='';
-  [R.r32,R.r16,R.qf,R.sf].forEach(r=>svg.appendChild(el("circle",{cx:CX,cy:CY,r,class:"ring"})));
-  const conn=(c,p)=>svg.appendChild(el("line",{x1:c[0],y1:c[1],x2:p[0],y2:p[1],class:"lk"}));
-  R16P.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
-  QFP.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
-  SFP.forEach(([a,b,m])=>{conn(pos[a],pos[m]);conn(pos[b],pos[m]);});
-  conn(pos[101],pos[104]);conn(pos[102],pos[104]);
-  const order=[...ORDER,90,89,93,94,91,92,95,96,97,98,99,100,101,102];
-  order.forEach(m=>{
-    const [x,y]=pos[m], L=label(m,data), big=META[m].rd==='R32';
-    const w=big?128:104, h=big?38:36, g=el("g",{});
-    g.appendChild(el("rect",{x:x-w/2,y:y-h/2,width:w,height:h,rx:6,class:"nd"}));
-    g.appendChild(txt([x-w/2+6,y-h/2+11],"num","M"+m,{anchor:"start"}));
-    const r1=y-h/2+22, r2=y-h/2+33;
-    const addTeam=(side,ry,isWin)=>{
-      const lx=x-w/2+6;
-      const emoji=side.known&&FLAG[side.name]?FLAG[side.name]:null;
-      if(emoji){
-        g.appendChild(txt([lx,ry],"fl",emoji,{anchor:"start"}));
-        g.appendChild(txt([lx+18,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
-      } else {
-        g.appendChild(txt([lx,ry],isWin?"tmw":"tm",side.name,{anchor:"start"}));
+  const rounds=[
+    {ms:ORDER, band:BAND.R32, outer:true},
+    {ms:[90,89,93,94,91,92,95,96].sort((a,b)=>SPAN[a][0]-SPAN[b][0]), band:BAND.R16},
+    {ms:[97,98,99,100].sort((a,b)=>SPAN[a][0]-SPAN[b][0]), band:BAND.QF},
+    {ms:[101,102].sort((a,b)=>SPAN[a][0]-SPAN[b][0]), band:BAND.SF},
+    {ms:[104], band:BAND.F}
+  ];
+  rounds.forEach(rd=>{
+    rd.ms.forEach(m=>{
+      const [A0,A1]=SPAN[m], mid=(A0+A1)/2, w=winner(data,m);
+      [1,2].forEach(k=>{
+        const a0=k==1?A0:mid, a1=k==1?mid:A1;
+        const t=teamInfo(data,m,k), sc=score(data,m,k);
+        const p=el("path",{d:sector(rd.band[0],rd.band[1],a0,a1),
+          class:"seg"+(t.known?(w&&w!=k?" seg-loser":""):" seg-empty")});
+        if(t.known) p.setAttribute("fill",COLOR[t.name]||"var(--surface)");
+        const title=el("title",{});
+        title.textContent="M"+m+" · "+META[m].d+" · "+META[m].v+(t.known?(" — "+t.name+(sc?" ("+sc+")":"")):" — "+t.name);
+        p.appendChild(title);
+        svg.appendChild(p);
+        // content at mid-angle of the sub-wedge, mid radius
+        const ca=(a0+a1)/2, rm=(rd.band[0]+rd.band[1])/2;
+        if(t.known){
+          const fcls=rd.band[0]-rd.band[1]>68?"fl":"fl-sm";
+          svg.appendChild(txt(pt(rm+8,ca),fcls,FLAG[t.name]||''));
+          const lbl=ABBR[t.name]||t.name;
+          const lt=txt(pt(rm-14,ca),"code",lbl+(sc!==null?" "+sc:""));
+          lt.setAttribute("fill","#ffffff");
+          lt.setAttribute("style","paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:2.5px;");
+          svg.appendChild(lt);
+        } else {
+          svg.appendChild(txt(pt(rm,ca),"slot",t.name));
+        }
+      });
+      if(rd.outer){ // tiny match number just outside the outer ring
+        svg.appendChild(txt(pt(rd.band[0]+9,mid),"mnum","M"+m));
       }
-    };
-    addTeam(L.a,r1,L.win==1);
-    addTeam(L.b,r2,L.win==2);
-    if(L.score){const parts=String(L.score).split('-');
-      g.appendChild(txt([x+w/2-6,r1],"sc",(parts[0]||'').trim(),{anchor:"end"}));
-      g.appendChild(txt([x+w/2-6,r2],"sc",(parts[1]||'').trim(),{anchor:"end"}));}
-    svg.appendChild(g);
+    });
   });
-  const fb=label(104,data), champ=data&&data.champion?data.champion:null;
-  const fg=el("g",{});
-  fg.appendChild(el("rect",{x:CX-66,y:CY-26,width:132,height:52,rx:9,class:"fin"}));
-  const champEmoji=champ&&FLAG[champ]?FLAG[champ]:'';
-  fg.appendChild(txt([CX,CY-10],"ti",champ?(champEmoji+' '+champ):"Final"));
-  fg.appendChild(txt([CX,CY+5],"ts", champ?"Champion":(fb.a.name+" v "+fb.b.name)));
-  fg.appendChild(txt([CX,CY+18],"ts","Jul 19 · New York NJ"));
-  svg.appendChild(fg);
+  // centre: champion or final info
+  const champ=data&&data.champion?data.champion:null;
+  svg.appendChild(el("circle",{cx:CX,cy:CY,r:CTR,class:champ?"ctr-champ":"ctr"}));
+  if(champ){
+    svg.appendChild(txt([CX,CY-18],"champ-fl",FLAG[champ]||''));
+    svg.appendChild(txt([CX,CY+14],"ti",champ));
+    svg.appendChild(txt([CX,CY+32],"ts","CHAMPION"));
+  } else {
+    svg.appendChild(txt([CX,CY-14],"ti","Final"));
+    svg.appendChild(txt([CX,CY+6],"ts","Jul 19"));
+    svg.appendChild(txt([CX,CY+20],"ts","New York NJ"));
+  }
   const u=document.getElementById('updated');
   u.textContent=(data&&data.updated?("Updated "+data.updated):"")+(data&&data.note?(" · "+data.note):"");
   const q=document.getElementById('quals');
