@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-01",
- "note": "R32 Day 4: England beat DR Congo 2-1 (Kane brace); Belgium stun Senegal 3-2 in extra time (Tielemans 125'). USA vs Bosnia later today. R16 set: Paraguay vs France, Brazil vs Norway, Mexico vs England.",
+ "updated": "2026-07-02",
+ "note": "R32 Day 4 complete: England beat DR Congo 2-1 (Kane brace); Belgium stun Senegal 3-2 in extra time (Tielemans 125'); USA beat Bosnia and Herzegovina 2-0 (Balogun, Tillman) despite a late Balogun red card. R16 set: Paraguay vs France, Brazil vs Norway, Mexico vs England, USA vs Belgium.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -55,8 +55,8 @@
   "81": {
    "t1": "USA",
    "t2": "Bosnia and Herzegovina",
-   "s": null,
-   "w": null
+   "s": "2-0",
+   "w": 1
   },
   "82": {
    "t1": "Belgium",
@@ -131,8 +131,8 @@
    "w": null
   },
   "94": {
-   "t1": null,
-   "t2": null,
+   "t1": "USA",
+   "t2": "Belgium",
    "s": null,
    "w": null
   },
