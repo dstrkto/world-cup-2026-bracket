@@ -39,6 +39,7 @@
   .seg-loser{opacity:.45;}
   .fl{font-size:20px;}
   .fl-sm{font-size:16px;}
+  .fimg{width:16px;height:12px;object-fit:cover;border-radius:2px;vertical-align:-1px;}
   .code{fill:var(--text);font-size:10px;font-weight:600;letter-spacing:.4px;}
   .slot{fill:var(--muted);font-size:9px;}
   .sc{fill:var(--text);font-size:11px;font-weight:700;}
@@ -108,6 +109,7 @@ const META={
 };
 const FLAG={"Mexico":"🇲🇽","South Africa":"🇿🇦","South Korea":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Bosnia and Herzegovina":"🇧🇦","Qatar":"🇶🇦","Switzerland":"🇨🇭","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","USA":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Ivory Coast":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cape Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
 const ABBR={"Mexico":"MEX","South Africa":"RSA","South Korea":"KOR","Czechia":"CZE","Canada":"CAN","Bosnia and Herzegovina":"BIH","Qatar":"QAT","Switzerland":"SUI","Brazil":"BRA","Morocco":"MAR","Haiti":"HAI","Scotland":"SCO","USA":"USA","Paraguay":"PAR","Australia":"AUS","Türkiye":"TUR","Germany":"GER","Curaçao":"CUW","Ivory Coast":"CIV","Ecuador":"ECU","Netherlands":"NED","Japan":"JPN","Sweden":"SWE","Tunisia":"TUN","Belgium":"BEL","Egypt":"EGY","Iran":"IRN","New Zealand":"NZL","Spain":"ESP","Cape Verde":"CPV","Saudi Arabia":"KSA","Uruguay":"URU","France":"FRA","Senegal":"SEN","Iraq":"IRQ","Norway":"NOR","Argentina":"ARG","Algeria":"ALG","Austria":"AUT","Jordan":"JOR","Portugal":"POR","DR Congo":"COD","Uzbekistan":"UZB","Colombia":"COL","England":"ENG","Croatia":"CRO","Ghana":"GHA","Panama":"PAN"};
+const CODE={"Mexico":"mx","South Africa":"za","South Korea":"kr","Czechia":"cz","Canada":"ca","Bosnia and Herzegovina":"ba","Qatar":"qa","Switzerland":"ch","Brazil":"br","Morocco":"ma","Haiti":"ht","Scotland":"gb-sct","USA":"us","Paraguay":"py","Australia":"au","Türkiye":"tr","Germany":"de","Curaçao":"cw","Ivory Coast":"ci","Ecuador":"ec","Netherlands":"nl","Japan":"jp","Sweden":"se","Tunisia":"tn","Belgium":"be","Egypt":"eg","Iran":"ir","New Zealand":"nz","Spain":"es","Cape Verde":"cv","Saudi Arabia":"sa","Uruguay":"uy","France":"fr","Senegal":"sn","Iraq":"iq","Norway":"no","Argentina":"ar","Algeria":"dz","Austria":"at","Jordan":"jo","Portugal":"pt","DR Congo":"cd","Uzbekistan":"uz","Colombia":"co","England":"gb-eng","Croatia":"hr","Ghana":"gh","Panama":"pa"};
 // primary national colors for wedge fills
 const COLOR={"Mexico":"#046a38","South Africa":"#007749","South Korea":"#cd2e3a","Czechia":"#d7141a","Canada":"#d80621","Bosnia and Herzegovina":"#002f6c","Qatar":"#8a1538","Switzerland":"#d52b1e","Brazil":"#ffdf00","Morocco":"#c1272d","Haiti":"#00209f","Scotland":"#005eb8","USA":"#3c3b6e","Paraguay":"#d52b1e","Australia":"#ffcd00","Türkiye":"#e30a17","Germany":"#000000","Curaçao":"#002b7f","Ivory Coast":"#f77f00","Ecuador":"#ffdd00","Netherlands":"#ff7f00","Japan":"#003580","Sweden":"#ffcd00","Tunisia":"#e70013","Belgium":"#ed2939","Egypt":"#ce1126","Iran":"#239f40","New Zealand":"#000000","Spain":"#aa151b","Cape Verde":"#003893","Saudi Arabia":"#006c35","Uruguay":"#7bafd4","France":"#002395","Senegal":"#00853f","Iraq":"#007a3d","Norway":"#ba0c2f","Argentina":"#75aadb","Algeria":"#006233","Austria":"#ed2939","Jordan":"#007a3d","Portugal":"#046a38","DR Congo":"#007fff","Uzbekistan":"#0099b5","Colombia":"#fcd116","England":"#cf081f","Croatia":"#ff0000","Ghana":"#fcd116","Panama":"#da121a"};
 // final group-stage records [team, W, D, L, GF, GA]
@@ -170,7 +172,8 @@ function renderGroups(data){
     const rows=GROUPS[g].map(r=>{
       const [t,w,d,l,gf,ga]=r, pts=w*3+d;
       const cls=adv.size?(adv.has(t)?"adv":"out"):"";
-      return '<tr class="'+cls+'"><td>'+(FLAG[t]||'')+' '+(ABBR[t]||t)+'</td><td class="pts">'+pts+'</td></tr>';
+      const fimg=CODE[t]?'<img class="fimg" src="flags/'+CODE[t]+'.svg" alt="">':'';
+      return '<tr class="'+cls+'"><td>'+fimg+' '+(ABBR[t]||t)+'</td><td class="pts">'+pts+'</td></tr>';
     }).join('');
     return '<div class="gp"><h3>GROUP '+g+'</h3><table>'+rows+'</table></div>';
   };
@@ -205,8 +208,9 @@ function draw(data){
         // content at mid-angle of the sub-wedge, mid radius
         const ca=(a0+a1)/2, rm=(rd.band[0]+rd.band[1])/2;
         if(t.known){
-          const fcls=rd.band[0]-rd.band[1]>68?"fl":"fl-sm";
-          svg.appendChild(txt(pt(rm+8,ca),fcls,FLAG[t.name]||''));
+          const big=rd.band[0]-rd.band[1]>68, fw=big?24:20, fh=big?18:15;
+          const [fx,fy]=pt(rm+8,ca);
+          if(CODE[t.name]) svg.appendChild(el("image",{href:"flags/"+CODE[t.name]+".svg",x:fx-fw/2,y:fy-fh/2,width:fw,height:fh,preserveAspectRatio:"xMidYMid slice"}));
           const lbl=ABBR[t.name]||t.name;
           const lt=txt(pt(rm-14,ca),"code",lbl+(sc!==null?" "+sc:""));
           lt.setAttribute("fill","#ffffff");
@@ -225,7 +229,7 @@ function draw(data){
   const champ=data&&data.champion?data.champion:null;
   svg.appendChild(el("circle",{cx:CX,cy:CY,r:CTR,class:champ?"ctr-champ":"ctr"}));
   if(champ){
-    svg.appendChild(txt([CX,CY-18],"champ-fl",FLAG[champ]||''));
+    if(CODE[champ]) svg.appendChild(el("image",{href:"flags/"+CODE[champ]+".svg",x:CX-24,y:CY-42,width:48,height:36,preserveAspectRatio:"xMidYMid slice"}));
     svg.appendChild(txt([CX,CY+14],"ti",champ));
     svg.appendChild(txt([CX,CY+32],"ts","CHAMPION"));
   } else {
@@ -237,7 +241,7 @@ function draw(data){
   u.textContent=(data&&data.updated?("Updated "+data.updated):"")+(data&&data.note?(" · "+data.note):"");
   const q=document.getElementById('quals');
   const qt=(data&&data.qualified)||[];
-  q.innerHTML=qt.length?('<span class="lbl">Through to the R32:</span>'+qt.map(n=>'<span class="chip">'+(FLAG[n]||'')+' '+n+'</span>').join('')):'';
+  q.innerHTML=qt.length?('<span class="lbl">Through to the R32:</span>'+qt.map(n=>'<span class="chip">'+(CODE[n]?'<img class="fimg" src="flags/'+CODE[n]+'.svg" alt="">':'')+' '+n+'</span>').join('')):'';
 }
 fetch('bracket.json?cb='+Date.now()).then(r=>r.json()).then(draw).catch(()=>draw(null));
 </script>
