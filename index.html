@@ -131,7 +131,8 @@ const pt=(r,a)=>[CX+r*Math.cos(a), CY+r*Math.sin(a)];
 const SPAN={};
 ORDER.forEach((m,i)=>{const a0=(-90-11.25+i*22.5)*D2R; SPAN[m]=[a0, a0+22.5*D2R];});
 [89,90,91,92,93,94,95,96,97,98,99,100,101,102,104].forEach(m=>{
-  const f=META[m].f; SPAN[m]=[SPAN[f[0]][0], SPAN[f[1]][1]];
+  const f=META[m].f, s0=SPAN[f[0]], s1=SPAN[f[1]];
+  SPAN[m]=[Math.min(s0[0],s1[0]), Math.max(s0[1],s1[1])];
 });
 const NS="http://www.w3.org/2000/svg";
 const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
@@ -191,7 +192,8 @@ function draw(data){
     rd.ms.forEach(m=>{
       const [A0,A1]=SPAN[m], mid=(A0+A1)/2, w=winner(data,m);
       [1,2].forEach(k=>{
-        const a0=k==1?A0:mid, a1=k==1?mid:A1;
+        const f=META[m].f;
+        const a0=f?SPAN[f[k-1]][0]:(k==1?A0:mid), a1=f?SPAN[f[k-1]][1]:(k==1?mid:A1);
         const t=teamInfo(data,m,k), sc=score(data,m,k);
         const p=el("path",{d:sector(rd.band[0],rd.band[1],a0,a1),
           class:"seg"+(t.known?(w&&w!=k?" seg-loser":""):" seg-empty")});
