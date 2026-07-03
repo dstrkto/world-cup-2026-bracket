@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-02",
- "note": "R32 Day 5 complete: Spain beat Austria 3-0 (Oyarzabal brace, Porro), Portugal beat Croatia 2-1 (Ronaldo pen, Ramos 94') to set up Portugal vs Spain in the last 16, and Switzerland beat Algeria 2-0 (Embolo, Ndoye). Final R32 day (Argentina-Cape Verde, Colombia-Ghana, Australia-Egypt) is July 3.",
+ "updated": "2026-07-03",
+ "note": "Fixed: R16 slot for M96 (Vancouver, Jul 7) now shows Switzerland as winners of M85, awaiting the Colombia/Ghana winner. R32 Day 5 complete: Spain beat Austria 3-0 (Oyarzabal brace, Porro), Portugal beat Croatia 2-1 (Ronaldo pen, Ramos 94') to set up Portugal vs Spain in the last 16, and Switzerland beat Algeria 2-0 (Embolo, Ndoye). Final R32 day (Argentina-Cape Verde, Colombia-Ghana, Australia-Egypt) is July 3.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -143,7 +143,7 @@
    "w": null
   },
   "96": {
-   "t1": null,
+   "t1": "Switzerland",
    "t2": null,
    "s": null,
    "w": null
