@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-02",
- "note": "R32 Day 4 complete: England beat DR Congo 2-1 (Kane brace); Belgium stun Senegal 3-2 in extra time (Tielemans 125'); USA beat Bosnia and Herzegovina 2-0 (Balogun, Tillman) despite a late Balogun red card. R16 set: Paraguay vs France, Brazil vs Norway, Mexico vs England, USA vs Belgium.",
+ "note": "R32 Day 5: Spain beat Austria 3-0 (Oyarzabal brace, Porro) and Portugal beat Croatia 2-1 (Ronaldo pen, Ramos 94') to set up Portugal vs Spain in the last 16. Switzerland vs Algeria still to finish.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -67,14 +67,14 @@
   "83": {
    "t1": "Portugal",
    "t2": "Croatia",
-   "s": null,
-   "w": null
+   "s": "2-1",
+   "w": 1
   },
   "84": {
    "t1": "Spain",
    "t2": "Austria",
-   "s": null,
-   "w": null
+   "s": "3-0",
+   "w": 1
   },
   "85": {
    "t1": "Switzerland",
@@ -125,8 +125,8 @@
    "w": null
   },
   "93": {
-   "t1": null,
-   "t2": null,
+   "t1": "Portugal",
+   "t2": "Spain",
    "s": null,
    "w": null
   },
