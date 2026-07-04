@@ -211,7 +211,10 @@ function draw(data){
         if(t.known){
           const big=rd.band[0]-rd.band[1]>68, fw=big?24:20, fh=big?18:15;
           const [fx,fy]=pt(rm+8,ca);
-          if(CODE[t.name]) svg.appendChild(el("image",{href:"flags/"+CODE[t.name]+".svg",x:fx-fw/2,y:fy-fh/2,width:fw,height:fh,preserveAspectRatio:"xMidYMid slice"}));
+          if(CODE[t.name]){
+            svg.appendChild(el("image",{href:"flags/"+CODE[t.name]+".svg",x:fx-fw/2,y:fy-fh/2,width:fw,height:fh,preserveAspectRatio:"xMidYMid slice"}));
+            svg.appendChild(el("rect",{x:fx-fw/2,y:fy-fh/2,width:fw,height:fh,rx:2,fill:"none",stroke:"rgba(0,0,0,.55)","stroke-width":1}));
+          }
           const lbl=ABBR[t.name]||t.name;
           const lt=txt(pt(rm-14,ca),"code",lbl+(sc!==null?" "+sc:""));
           lt.setAttribute("fill","#ffffff");
