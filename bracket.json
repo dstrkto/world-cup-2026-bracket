@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-04",
- "note": "Morocco thrash Canada 3-0 (Ounahi brace, Rahimi) in Houston to reach the quarterfinals (M90). Paraguay vs France (M89) still to come tonight in Philadelphia.",
+ "note": "France beat Paraguay 1-0 (Mbappe pen) in Philadelphia to complete the Round of 16 (M89); France face Morocco in the quarterfinals (M97).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -103,8 +103,8 @@
   "89": {
    "t1": "Paraguay",
    "t2": "France",
-   "s": null,
-   "w": null
+   "s": "0-1",
+   "w": 2
   },
   "90": {
    "t1": "Canada",
@@ -149,7 +149,7 @@
    "w": null
   },
   "97": {
-   "t1": null,
+   "t1": "France",
    "t2": "Morocco",
    "s": null,
    "w": null
