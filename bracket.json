@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-03",
- "note": "Argentina beat Cape Verde 3-2 (aet) in a thriller to complete M86; they'll face Egypt in the Round of 16 (M95, Atlanta, Jul 7). Colombia vs Ghana (M87) is the last Round of 32 tie, kicking off late July 3/early July 4 in Kansas City — group stage now fully wrapped and only that match remains before the Round of 16 begins.",
+ "updated": "2026-07-04",
+ "note": "Colombia beat Ghana 1-0 (Jhon Arias, 14') to complete M87 — the Round of 32 is now fully finished. Colombia advance to face Switzerland in the Round of 16 (M96, Vancouver). Round of 16 begins later today with Paraguay vs France and Canada vs Morocco.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -91,8 +91,8 @@
   "87": {
    "t1": "Colombia",
    "t2": "Ghana",
-   "s": null,
-   "w": null
+   "s": "1-0",
+   "w": 1
   },
   "88": {
    "t1": "Australia",
@@ -144,7 +144,7 @@
   },
   "96": {
    "t1": "Switzerland",
-   "t2": null,
+   "t2": "Colombia",
    "s": null,
    "w": null
   },
