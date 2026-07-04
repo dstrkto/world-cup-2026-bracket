@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-03",
- "note": "Fixed: R16 slot for M95 (Atlanta, Jul 7) now shows Egypt as winners of M88, awaiting the Argentina/Cape Verde winner. Egypt beat Australia 4-2 on penalties after a 1-1 draw (aet) to complete Round of 32 Day 6. Argentina vs Cape Verde and Colombia vs Ghana are the final two R32 ties, both July 3.",
+ "note": "Argentina beat Cape Verde 3-2 (aet) in a thriller to complete M86; they'll face Egypt in the Round of 16 (M95, Atlanta, Jul 7). Colombia vs Ghana (M87) is the last Round of 32 tie, kicking off late July 3/early July 4 in Kansas City — group stage now fully wrapped and only that match remains before the Round of 16 begins.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -85,8 +85,8 @@
   "86": {
    "t1": "Argentina",
    "t2": "Cape Verde",
-   "s": null,
-   "w": null
+   "s": "3-2 (aet)",
+   "w": 1
   },
   "87": {
    "t1": "Colombia",
@@ -137,7 +137,7 @@
    "w": null
   },
   "95": {
-   "t1": null,
+   "t1": "Argentina",
    "t2": "Egypt",
    "s": null,
    "w": null
