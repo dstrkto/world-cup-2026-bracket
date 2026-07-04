@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-04",
- "note": "Colombia beat Ghana 1-0 (Jhon Arias, 14') to complete M87 — the Round of 32 is now fully finished. Colombia advance to face Switzerland in the Round of 16 (M96, Vancouver). Round of 16 begins later today with Paraguay vs France and Canada vs Morocco.",
+ "note": "Morocco thrash Canada 3-0 (Ounahi brace, Rahimi) in Houston to reach the quarterfinals (M90). Paraguay vs France (M89) still to come tonight in Philadelphia.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -109,8 +109,8 @@
   "90": {
    "t1": "Canada",
    "t2": "Morocco",
-   "s": null,
-   "w": null
+   "s": "0-3",
+   "w": 2
   },
   "91": {
    "t1": "Brazil",
