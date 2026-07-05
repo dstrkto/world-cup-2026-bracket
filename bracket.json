@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-04",
- "note": "France beat Paraguay 1-0 (Mbappe pen) in Philadelphia to complete the Round of 16 (M89); France face Morocco in the quarterfinals (M97).",
+ "updated": "2026-07-05",
+ "note": "Norway stunned Brazil 2-1 (Haaland x2) at MetLife Stadium (M91) to reach their first-ever quarterfinal, where they'll face the Mexico vs England winner; that match is underway (delayed by weather at the Azteca).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -115,8 +115,8 @@
   "91": {
    "t1": "Brazil",
    "t2": "Norway",
-   "s": null,
-   "w": null
+   "s": "1-2",
+   "w": 2
   },
   "92": {
    "t1": "Mexico",
