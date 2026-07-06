@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-05",
- "note": "Norway stunned Brazil 2-1 (Haaland x2) at MetLife Stadium (M91) to reach their first-ever quarterfinal, where they'll face the Mexico vs England winner; that match is underway (delayed by weather at the Azteca).",
+ "note": "10-man England beat Mexico 3-2 at the Azteca (Bellingham x2, Kane pen; Quansah red card) to join Norway in the quarterfinals — Norway vs England is set for Miami on July 11.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -121,8 +121,8 @@
   "92": {
    "t1": "Mexico",
    "t2": "England",
-   "s": null,
-   "w": null
+   "s": "2-3",
+   "w": 2
   },
   "93": {
    "t1": "Portugal",
@@ -162,7 +162,7 @@
   },
   "99": {
    "t1": "Norway",
-   "t2": null,
+   "t2": "England",
    "s": null,
    "w": null
   },
