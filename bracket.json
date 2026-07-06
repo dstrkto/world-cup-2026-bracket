@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-05",
- "note": "10-man England beat Mexico 3-2 at the Azteca (Bellingham x2, Kane pen; Quansah red card) to join Norway in the quarterfinals — Norway vs England is set for Miami on July 11.",
+ "updated": "2026-07-06",
+ "note": "Mikel Merino struck in stoppage time to send Spain past Portugal 1-0 in Dallas, likely ending Cristiano Ronaldo's sixth and final World Cup. USA vs Belgium follows in Seattle tonight.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -127,8 +127,8 @@
   "93": {
    "t1": "Portugal",
    "t2": "Spain",
-   "s": null,
-   "w": null
+   "s": "0-1",
+   "w": 2
   },
   "94": {
    "t1": "USA",
