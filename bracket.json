@@ -1,6 +1,6 @@
 {
  "updated": "2026-07-07",
- "note": "Belgium thrashed the USA 4-1 in Seattle (De Ketelaere brace) to reach the quarter-finals and set up a clash with Spain. Argentina vs Egypt and Switzerland vs Colombia complete the Round of 16 later today.",
+ "note": "Argentina came from 2-0 down to beat Egypt 3-2 on a stoppage-time Enzo Fernandez winner, setting up a quarter-final with the Switzerland-Colombia winner. That last Round of 16 match kicks off later today in Vancouver.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -139,8 +139,8 @@
   "95": {
    "t1": "Argentina",
    "t2": "Egypt",
-   "s": null,
-   "w": null
+   "s": "3-2",
+   "w": 1
   },
   "96": {
    "t1": "Switzerland",
@@ -167,7 +167,7 @@
    "w": null
   },
   "100": {
-   "t1": null,
+   "t1": "Argentina",
    "t2": null,
    "s": null,
    "w": null
