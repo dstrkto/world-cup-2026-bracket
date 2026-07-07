@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-06",
- "note": "Mikel Merino struck in stoppage time to send Spain past Portugal 1-0 in Dallas, likely ending Cristiano Ronaldo's sixth and final World Cup. USA vs Belgium follows in Seattle tonight.",
+ "updated": "2026-07-07",
+ "note": "Belgium thrashed the USA 4-1 in Seattle (De Ketelaere brace) to reach the quarter-finals and set up a clash with Spain. Argentina vs Egypt and Switzerland vs Colombia complete the Round of 16 later today.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -133,8 +133,8 @@
   "94": {
    "t1": "USA",
    "t2": "Belgium",
-   "s": null,
-   "w": null
+   "s": "1-4",
+   "w": 2
   },
   "95": {
    "t1": "Argentina",
@@ -156,7 +156,7 @@
   },
   "98": {
    "t1": "Spain",
-   "t2": null,
+   "t2": "Belgium",
    "s": null,
    "w": null
   },
