@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-07",
- "note": "Round of 16 is complete: Switzerland edged Colombia 0-0 (4-3 pens) in Vancouver to set up a quarter-final with Argentina on July 12. Quarter-finals begin July 9 with France vs Morocco.",
+ "updated": "2026-07-10",
+ "note": "Quarter-finals under way: France 2-0 Morocco (Jul 9) and Spain 2-1 Belgium (Jul 10) through to the semis. Norway vs England and Argentina vs Switzerland follow Jul 11.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -151,14 +151,14 @@
   "97": {
    "t1": "France",
    "t2": "Morocco",
-   "s": null,
-   "w": null
+   "s": "2-0",
+   "w": 1
   },
   "98": {
    "t1": "Spain",
    "t2": "Belgium",
-   "s": null,
-   "w": null
+   "s": "2-1",
+   "w": 1
   },
   "99": {
    "t1": "Norway",
