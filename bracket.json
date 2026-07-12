@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-11",
- "note": "England beat Norway 2-1 (aet) to join France and Spain in the semis; Argentina vs Switzerland kicks off later Jul 11 to complete the lineup.",
+ "updated": "2026-07-12",
+ "note": "Argentina beat 10-man Switzerland 3-1 (aet) to complete the semi-final lineup: France vs Spain (Jul 14) and England vs Argentina (Jul 15).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -169,8 +169,8 @@
   "100": {
    "t1": "Argentina",
    "t2": "Switzerland",
-   "s": null,
-   "w": null
+   "s": "3-1 (aet)",
+   "w": 1
   },
   "101": {
    "t1": "France",
@@ -180,7 +180,7 @@
   },
   "102": {
    "t1": "England",
-   "t2": null,
+   "t2": "Argentina",
    "s": null,
    "w": null
   },
