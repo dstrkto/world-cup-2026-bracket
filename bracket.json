@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-10",
- "note": "Quarter-finals under way: France 2-0 Morocco (Jul 9) and Spain 2-1 Belgium (Jul 10) through to the semis. Norway vs England and Argentina vs Switzerland follow Jul 11.",
+ "updated": "2026-07-11",
+ "note": "England beat Norway 2-1 (aet) to join France and Spain in the semis; Argentina vs Switzerland kicks off later Jul 11 to complete the lineup.",
  "champion": null,
  "qualified": [],
  "m": {
@@ -163,8 +163,8 @@
   "99": {
    "t1": "Norway",
    "t2": "England",
-   "s": null,
-   "w": null
+   "s": "1-2 (aet)",
+   "w": 2
   },
   "100": {
    "t1": "Argentina",
@@ -179,7 +179,7 @@
    "w": null
   },
   "102": {
-   "t1": null,
+   "t1": "England",
    "t2": null,
    "s": null,
    "w": null
