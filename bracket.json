@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-12",
- "note": "Argentina beat 10-man Switzerland 3-1 (aet) to complete the semi-final lineup: France vs Spain (Jul 14) and England vs Argentina (Jul 15).",
+ "updated": "2026-07-14",
+ "note": "Spain beat France 2-0 in Dallas to reach the final; they await the winner of England vs Argentina (Jul 15).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -175,8 +175,8 @@
   "101": {
    "t1": "France",
    "t2": "Spain",
-   "s": null,
-   "w": null
+   "s": "0-2",
+   "w": 2
   },
   "102": {
    "t1": "England",
@@ -185,13 +185,13 @@
    "w": null
   },
   "103": {
-   "t1": null,
+   "t1": "France",
    "t2": null,
    "s": null,
    "w": null
   },
   "104": {
-   "t1": null,
+   "t1": "Spain",
    "t2": null,
    "s": null,
    "w": null
