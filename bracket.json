@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-14",
- "note": "Spain beat France 2-0 in Dallas to reach the final; they await the winner of England vs Argentina (Jul 15).",
+ "updated": "2026-07-16",
+ "note": "Argentina beat England 2-1 in stoppage time to reach the final vs Spain (Jul 19); France face England in the third-place playoff (Jul 18).",
  "champion": null,
  "qualified": [],
  "m": {
@@ -181,18 +181,18 @@
   "102": {
    "t1": "England",
    "t2": "Argentina",
-   "s": null,
-   "w": null
+   "s": "1-2",
+   "w": 2
   },
   "103": {
    "t1": "France",
-   "t2": null,
+   "t2": "England",
    "s": null,
    "w": null
   },
   "104": {
    "t1": "Spain",
-   "t2": null,
+   "t2": "Argentina",
    "s": null,
    "w": null
   }
