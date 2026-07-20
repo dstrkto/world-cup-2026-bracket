@@ -1,7 +1,7 @@
 {
- "updated": "2026-07-16",
- "note": "Argentina beat England 2-1 in stoppage time to reach the final vs Spain (Jul 19); France face England in the third-place playoff (Jul 18).",
- "champion": null,
+ "updated": "2026-07-19",
+ "note": "Spain beat Argentina 1-0 (aet, Ferran Torres 106') to win the 2026 World Cup; England beat France 6-4 to take third place. Tournament complete.",
+ "champion": "Spain",
  "qualified": [],
  "m": {
   "73": {
@@ -187,14 +187,14 @@
   "103": {
    "t1": "France",
    "t2": "England",
-   "s": null,
-   "w": null
+   "s": "4-6",
+   "w": 2
   },
   "104": {
    "t1": "Spain",
    "t2": "Argentina",
-   "s": null,
-   "w": null
+   "s": "1-0 (aet)",
+   "w": 1
   }
  }
 }
